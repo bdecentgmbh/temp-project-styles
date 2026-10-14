@@ -169,13 +169,17 @@ body.dashcompose-sitewide.modern-clean .member-cards .card-layout-row.card-layou
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic {
     --dashcompose-profile-photo: min(260px, 42.71vw);
     --dashcompose-profile-pad: clamp(20px, 4.4vw, 60px);
-    --dashcompose-profile-gap: clamp(20px, 4.5vw, 62px);
+    --dashcompose-profile-gap: 24px;
     --dashcompose-profile-wash: linear-gradient(180deg, rgba(111, 135, 230, 0) 0%, rgba(111, 135, 230, 0.21) 170%);
     --dashcompose-profile-name-min: 24px;
-    --dashcompose-profile-panel: 290px;
+    --dashcompose-profile-panel: 220px;
     --dashcompose-profile-navbar: 38px;
     --dashcompose-profile-phototop: 37px;
-    --dashcompose-profile-space: clamp(32px, calc(32.536vw - 98.144px), 100px);
+    --dashcompose-profile-space: clamp(32px, calc(32.536vw - 98.144px), 36px);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 {
+    --dashcompose-profile-photo: 100px;
 }
 
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic:not(.course-1) {
@@ -204,9 +208,9 @@ body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:
         "buttons";
     grid-template-rows: auto auto;
     align-content: center;
-    gap: 24px;
+    gap: 18px;
     height: calc(var(--dashcompose-profile-panel) - 2 * var(--dashcompose-profile-navbar));
-    padding-top: 70px;
+    padding-top: 46px;
     padding-left: calc(var(--dashcompose-profile-photo) + var(--dashcompose-profile-gap));
     overflow: visible;
     margin-top: 0 !important;
@@ -407,7 +411,7 @@ body.dashcompose-sitewide.modern-clean .profile_tree .node_category {
         position: static;
         grid-area: photo;
         width: 100%;
-        max-width: 400px;
+        max-width: var(--dashcompose-profile-photo);
     }
 
     body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userpicture,
@@ -417,6 +421,6 @@ body.dashcompose-sitewide.modern-clean .profile_tree .node_category {
     }
 
     body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userinitials {
-        font-size: 25vw;
+        font-size: calc(var(--dashcompose-profile-photo) * 0.28);
     }
 }
