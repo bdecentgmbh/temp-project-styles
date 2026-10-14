@@ -1,0 +1,422 @@
+/* Eduhub+ — the navbar, the profile page and the members grid.
+   Lifted out of local_dashcompose on 2026-10-06: these dress Moodle's own
+   pages, not any Compose widget, so they belong to the site and not to the
+   plugin. The --dashaddon-* tokens still resolve: the connector emits them
+   into the page head, and the body classes below are its own. */
+
+/* Navbar */
+
+body.dashcompose-sitewide.modern-clean .navbar.fixed-top {
+    border-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    body.dashcompose-sitewide.modern-clean .navbar > .container-fluid {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+}
+
+/* Members grid, and the profile page */
+
+body.dashcompose-sitewide.modern-clean:not(.editing) .member-cards.card {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+body.dashcompose-sitewide.modern-clean:not(.editing) .member-cards.card > .card-body {
+    padding: 0 !important;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards.card {
+    margin-top: 48px;
+    margin-bottom: 48px !important;
+}
+
+@media (max-width: 575.98px) {
+    body.dashcompose-sitewide.modern-clean .member-cards.card {
+        margin-top: 36px;
+        margin-bottom: 36px !important;
+    }
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card {
+    position: relative;
+    background: var(--dashaddon-surface-page);
+    border: 0;
+    border-radius: var(--dashaddon-radius-md);
+    box-shadow: var(--dashaddon-shadow-sm);
+    padding: 12px 12px 17px;
+    height: 100%;
+    font-family: var(--dashaddon-font-family);
+    transition: box-shadow 0.15s ease;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card:hover,
+body.dashcompose-sitewide.modern-clean .member-cards .card:focus-within {
+    box-shadow: var(--dashaddon-shadow-xs);
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card > a {
+    display: block;
+    line-height: 0;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card a[href*="/user/profile.php"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--dashaddon-radius-sm);
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-body {
+    padding: 16px 0 0;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-body > .card-title {
+    font-size: clamp(var(--dashaddon-size-md), calc(var(--dashaddon-size-md) + (100vw - 400px) * 7 / 775), 25px);
+    font-weight: var(--dashaddon-weight-medium);
+    line-height: 1.26;
+    color: var(--dashaddon-ink);
+    margin: 0 0 4px;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-title-sub {
+    font-size: clamp(var(--dashaddon-size-sm), calc(var(--dashaddon-size-sm) + (100vw - 400px) / 775), 15px);
+    font-weight: var(--dashaddon-weight-regular);
+    line-height: 1.26;
+    color: var(--dashaddon-ink-muted);
+    margin: 0;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-body-1,
+body.dashcompose-sitewide.modern-clean .member-cards .card-body-2,
+body.dashcompose-sitewide.modern-clean .member-cards .card-body-3 {
+    font-size: clamp(15px, calc(15px + (100vw - 400px) / 775), var(--dashaddon-size-base));
+    font-weight: var(--dashaddon-weight-light);
+    line-height: 1.2;
+    color: var(--dashaddon-ink-muted);
+    margin: 0;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-text {
+    margin: 0;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-text.card-footer {
+    margin-top: 15px;
+    padding: 0;
+    background: none;
+    border: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-footer-left,
+body.dashcompose-sitewide.modern-clean .member-cards .card-footer-right {
+    float: none !important;
+    padding: 1.5px 4.5px;
+    background: var(--dashaddon-surface-card);
+    border-radius: var(--dashaddon-radius-xs);
+    font-size: clamp(var(--dashcompose-member-tag-size), calc(var(--dashcompose-member-tag-size) + (100vw - 400px) / 775), 11px);
+    font-weight: var(--dashaddon-weight-medium);
+    line-height: 1.3;
+    color: var(--dashaddon-brand);
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-footer-left {
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards {
+    --dashcompose-member-gap-x: clamp(10px, 2.3vw, 27px);
+    --dashcompose-member-gap-y: clamp(20px, 3.06vw, 36px);
+    --dashcompose-member-tag-size: 10px;
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .row.grid-layout {
+    --bs-gutter-y: 0;
+    row-gap: var(--dashcompose-member-gap-y);
+    margin-left: calc(var(--dashcompose-member-gap-x) / -2);
+    margin-right: calc(var(--dashcompose-member-gap-x) / -2);
+}
+
+body.dashcompose-sitewide.modern-clean .member-cards .card-layout-row.card-layout-default > .card-block {
+    padding: 0 calc(var(--dashcompose-member-gap-x) / 2);
+    margin-bottom: 0;
+}
+
+@media (min-width: 400px) and (max-width: 575.98px) {
+    body.dashcompose-sitewide.modern-clean .member-cards .card-block-parent {
+        width: 50%;
+    }
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic {
+    --dashcompose-profile-photo: min(260px, 42.71vw);
+    --dashcompose-profile-pad: clamp(20px, 4.4vw, 60px);
+    --dashcompose-profile-gap: clamp(20px, 4.5vw, 62px);
+    --dashcompose-profile-wash: linear-gradient(180deg, rgba(111, 135, 230, 0) 0%, rgba(111, 135, 230, 0.21) 170%);
+    --dashcompose-profile-name-min: 24px;
+    --dashcompose-profile-panel: 290px;
+    --dashcompose-profile-navbar: 38px;
+    --dashcompose-profile-phototop: 37px;
+    --dashcompose-profile-space: clamp(32px, calc(32.536vw - 98.144px), 100px);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic:not(.course-1) {
+    --dashcompose-profile-photo: 150px;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header .me-auto.d-flex.flex-column {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header {
+    max-height: var(--dashcompose-profile-panel);
+    margin-bottom: var(--dashcompose-profile-space);
+    padding: 0 var(--dashcompose-profile-pad) 44px;
+    background: var(--dashcompose-profile-wash);
+    border-radius: var(--dashaddon-radius-lg);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "name"
+        "buttons";
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: 24px;
+    height: calc(var(--dashcompose-profile-panel) - 2 * var(--dashcompose-profile-navbar));
+    padding-top: 70px;
+    padding-left: calc(var(--dashcompose-profile-photo) + var(--dashcompose-profile-gap));
+    overflow: visible;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image {
+    position: absolute;
+    top: var(--dashcompose-profile-phototop);
+    left: 0;
+    width: var(--dashcompose-profile-photo);
+}
+
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userpicture {
+    display: block;
+    width: 100%;
+    height: var(--dashcompose-profile-photo);
+    max-width: none;
+    margin-right: 0;
+    object-fit: cover;
+    border-radius: var(--dashaddon-radius-md);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userinitials {
+    display: flex;
+    width: 100%;
+    height: var(--dashcompose-profile-photo);
+    margin-right: 0;
+    font-size: calc(var(--dashcompose-profile-photo) * 0.28);
+    border-radius: var(--dashaddon-radius-md);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) .page-header-headings {
+    grid-area: name;
+    min-width: 0;
+    align-self: end;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header .page-header-headings h1 {
+    font-size: clamp(var(--dashcompose-profile-name-min), 3.2vw, 37px);
+    font-weight: var(--dashaddon-weight-semibold);
+    line-height: 1.15;
+    color: var(--dashaddon-brand);
+    margin: 0;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) .page-header-headings h2 {
+    color: var(--dashaddon-brand);
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group {
+    grid-area: buttons;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    margin-left: 0 !important;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 36px;
+    padding: 0 0.75rem;
+    background: var(--dashaddon-surface-page);
+    border: 1px solid #eaecef;
+    border-radius: var(--dashaddon-radius-sm);
+    color: var(--dashaddon-ink-subtle);
+    font-size: var(--dashaddon-size-sm);
+    font-weight: var(--dashaddon-weight-regular);
+    line-height: 1.33;
+    text-decoration: none;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a:hover,
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a:focus {
+    background: var(--dashaddon-surface-card);
+    color: var(--dashaddon-accent);
+    text-decoration: none;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a.disabled {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a img,
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a .icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .header-button-group > a .icon::before {
+    position: relative;
+    top: 1px;
+    color: var(--dashaddon-accent);
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree ul li:not(.contentnode):not(.editprofile):not(:has(.badge)) {
+    position: relative;
+    margin-bottom: 12px;
+    padding-left: 27px;
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree ul li:not(.contentnode):not(.editprofile):not(:has(.badge)):last-child {
+    margin-bottom: 0;
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree ul li:not(.contentnode):not(.editprofile):not(:has(.badge))::before {
+    content: "";
+    position: absolute;
+    top: 0.45em;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 5.5px solid transparent;
+    border-bottom: 5.5px solid transparent;
+    border-left: 9px solid var(--dashaddon-accent);
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree .badge.bg-info {
+    background-color: var(--dashaddon-surface-card) !important;
+    color: var(--dashaddon-brand) !important;
+    font-weight: 500;
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree dl {
+    color: var(--dashaddon-ink-muted);
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree a {
+    color: var(--dashaddon-brand);
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree .node_category > .card-body {
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree .node_category > .card-body > h3 {
+    font-size: var(--dashaddon-size-2xl);
+    font-weight: var(--dashaddon-weight-medium);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--dashaddon-brand);
+    margin-bottom: 18px;
+}
+
+body.dashcompose-sitewide.modern-clean .profile_tree .node_category {
+    --bs-card-spacer-y: 24px;
+    --bs-card-spacer-x: 24px;
+
+    background: var(--dashaddon-surface-page);
+    border: 0;
+    border-radius: var(--dashaddon-radius-lg);
+    box-shadow: var(--dashaddon-shadow-edge);
+}
+
+@media (min-width: 400px) and (max-width: 767.98px) {
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header {
+        max-height: 320px;
+    }
+}
+
+@media (max-width: 399.98px) {
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header {
+        max-height: none;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header .d-flex.align-items-center {
+        flex-wrap: wrap;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header .me-auto.d-flex.flex-column {
+        flex-basis: 100%;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) {
+        grid-template-areas:
+            "photo"
+            "name"
+            "buttons";
+        grid-template-rows: auto auto auto;
+        height: auto;
+        padding-top: 20px;
+        padding-left: 0;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image {
+        position: static;
+        grid-area: photo;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userpicture,
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userinitials {
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image .userinitials {
+        font-size: 25vw;
+    }
+}
