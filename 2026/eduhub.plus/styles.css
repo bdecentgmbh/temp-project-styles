@@ -167,23 +167,14 @@ body.dashcompose-sitewide.modern-clean .member-cards .card-layout-row.card-layou
 }
 
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic {
-    --dashcompose-profile-photo: min(260px, 42.71vw);
+    --dashcompose-profile-photo: 100px;
     --dashcompose-profile-pad: clamp(20px, 4.4vw, 60px);
     --dashcompose-profile-gap: 24px;
     --dashcompose-profile-wash: linear-gradient(180deg, rgba(111, 135, 230, 0) 0%, rgba(111, 135, 230, 0.21) 170%);
     --dashcompose-profile-name-min: 24px;
     --dashcompose-profile-panel: 220px;
     --dashcompose-profile-navbar: 38px;
-    --dashcompose-profile-phototop: 37px;
     --dashcompose-profile-space: clamp(32px, calc(32.536vw - 98.144px), 36px);
-}
-
-body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 {
-    --dashcompose-profile-photo: 100px;
-}
-
-body.dashcompose-sitewide.modern-clean.pagelayout-mypublic:not(.course-1) {
-    --dashcompose-profile-photo: 150px;
 }
 
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header .me-auto.d-flex.flex-column {
@@ -200,27 +191,24 @@ body.dashcompose-sitewide.modern-clean.pagelayout-mypublic.course-1 #page-header
 }
 
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) {
-    position: relative;
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: var(--dashcompose-profile-photo) minmax(0, 1fr);
     grid-template-areas:
-        "name"
-        "buttons";
+        "photo name"
+        "photo buttons";
     grid-template-rows: auto auto;
     align-content: center;
-    gap: 18px;
-    height: calc(var(--dashcompose-profile-panel) - 2 * var(--dashcompose-profile-navbar));
+    column-gap: var(--dashcompose-profile-gap);
+    row-gap: 18px;
+    min-height: calc(var(--dashcompose-profile-panel) - 2 * var(--dashcompose-profile-navbar));
     padding-top: 46px;
-    padding-left: calc(var(--dashcompose-profile-photo) + var(--dashcompose-profile-gap));
-    overflow: visible;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
 body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image {
-    position: absolute;
-    top: var(--dashcompose-profile-phototop);
-    left: 0;
+    grid-area: photo;
+    align-self: start;
     width: var(--dashcompose-profile-photo);
 }
 
@@ -397,18 +385,17 @@ body.dashcompose-sitewide.modern-clean .profile_tree .node_category {
     }
 
     body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-context-header:has(.page-header-image) {
+        grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
             "photo"
             "name"
             "buttons";
         grid-template-rows: auto auto auto;
-        height: auto;
+        min-height: 0;
         padding-top: 20px;
-        padding-left: 0;
     }
 
     body.dashcompose-sitewide.modern-clean.pagelayout-mypublic .page-header-image {
-        position: static;
         grid-area: photo;
         width: 100%;
         max-width: var(--dashcompose-profile-photo);
